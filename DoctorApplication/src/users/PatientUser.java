@@ -10,10 +10,10 @@ package users;
  * @author Matt
  */
 public class PatientUser implements User{
-    String userID = "";
-    String name = "";
-    String address = "";
-    String sex = "";
+    public static String userID = "";
+    public String name = "";
+    public String address = "";
+    public String sex = "";
     int age;
     public PatientUser(String userID, String name, String address, String sex, int age)
     {

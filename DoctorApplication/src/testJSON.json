@@ -1,0 +1,20 @@
+{"Patients":[
+  { "userID" : "P0001","name":"Matt Hough", "address":"4 Plym Street", "age":"20","sex":"M" },
+  { "userID" : "P0002","name":"Peter Griffin", "address":"31 Spooner Street", "age":"58","sex":"M" },
+  { "userID" : "P0003","name":"Sirius Black", "address":"12 Grimmauld Place", "age":"36","sex":"M" }
+]
+"Doctors":[
+  { "userID" : "D0001","name":"Doc Brown", "address":"1640 Riverside Drive" },
+  { "userID" : "D0002","name":"Doctor Nick", "address":"44 Bow Street" }
+  
+]
+"Admins":[
+  { "userID" : "A0001","name":"Rick Bushnell", "address":"3rd circle Hell" },
+  { "userID" : "A0002","name":"MR Robot", "address":"135 East 57th Street" }
+]
+"Secretaries":[
+  { "userID" : "S0001","name":"Janine Melnitz", "address":"8 North Moore Street" }
+]
+
+
+}

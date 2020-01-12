@@ -5,6 +5,12 @@
  */
 package forms;
 
+import forms.AdminForms.AdminHomeScreen;
+import forms.DoctorForms.DoctorHomeScreen;
+import forms.PatientForms.PatientHomeScreen;
+import org.json.simple.JSONObject;
+import system.LoginSys;
+
 /**
  *
  * @author mhough
@@ -97,9 +103,30 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    Boolean input;
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
+
+        input = LoginSys.login(txtUname.getText(), txtPasswd.getText());
+        if (input == true) {
+            if (txtUname.getText().charAt(0) == 'P') {
+                new PatientHomeScreen().setVisible(true);
+                this.dispose();
+            }
+            else if (txtUname.getText().charAt(0) == 'D') {
+                new DoctorHomeScreen().setVisible(true);
+                this.dispose();
+            }
+            else if (txtUname.getText().charAt(0) == 'A') {
+                new AdminHomeScreen().setVisible(true);
+                this.dispose();
+            }
+            else if (txtUname.getText().charAt(0) == 'S') {
+                new DoctorHomeScreen().setVisible(true);
+                this.dispose();
+            }
+        }
+
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

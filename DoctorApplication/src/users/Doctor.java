@@ -10,9 +10,9 @@ package users;
  * @author mhough
  */
 public class Doctor implements User {
-    String userID = "";
-    String name = "";
-    String address = "";
+    public static String userID = "";
+    public String name = "";
+    public String address = "";
     public Doctor(String userID, String name, String address)
     {
     this.userID = userID;

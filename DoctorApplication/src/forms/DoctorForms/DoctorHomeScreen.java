@@ -5,6 +5,8 @@
  */
 package forms.DoctorForms;
 
+import users.Doctor;
+
 /**
  *
  * @author mhough
@@ -27,13 +29,10 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblWelcome = new javax.swing.JLabel();
         btnViewAppointments = new javax.swing.JButton();
         btnOrderMeds = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblWelcome.setText("Welcome Doctor [NAME]");
 
         btnViewAppointments.setText("View Appointments");
         btnViewAppointments.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +55,6 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblWelcome)
                     .addComponent(btnOrderMeds)
                     .addComponent(btnViewAppointments))
                 .addContainerGap(263, Short.MAX_VALUE))
@@ -64,9 +62,7 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblWelcome)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addComponent(btnOrderMeds)
                 .addGap(18, 18, 18)
                 .addComponent(btnViewAppointments)
@@ -120,11 +116,11 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
                 new DoctorHomeScreen().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrderMeds;
     private javax.swing.JButton btnViewAppointments;
-    private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 }
