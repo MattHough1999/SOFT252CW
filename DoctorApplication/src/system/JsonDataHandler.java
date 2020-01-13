@@ -6,6 +6,7 @@
 package system;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
  
@@ -23,7 +24,7 @@ public class JsonDataHandler {
         // TODO code application logic here
        JSONParser jsonParser = new JSONParser();
          
-        try (FileReader reader = new FileReader("C:\\Users\\Matthew\\Documents\\GitHub\\SOFT252CW\\DoctorApplication\\src\\testJSON.json"))
+        try (FileReader reader = new FileReader("./testJSON.json"))
         {
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
@@ -65,7 +66,7 @@ public class JsonDataHandler {
     public static JSONObject getData()
     {
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader("C:\\Users\\Matthew\\Documents\\GitHub\\SOFT252CW\\DoctorApplication\\src\\testJSON.json"))
+        try (FileReader reader = new FileReader("./testJSON.json"))
         {
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
@@ -78,6 +79,19 @@ public class JsonDataHandler {
             e.printStackTrace();
         }
         return null;
+    }
+    public static void addData(JSONObject newData)
+    {
+        JSONParser jsonParser = new JSONParser();
+        try (FileWriter file = new FileWriter("./testJSON.json")) {
+ 
+            file.write(newData.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
     
     

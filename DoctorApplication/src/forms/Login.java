@@ -6,6 +6,7 @@
 package forms;
 
 import forms.AdminForms.AdminHomeScreen;
+import forms.AdminForms.CreateOwnAccount;
 import forms.DoctorForms.DoctorHomeScreen;
 import forms.PatientForms.PatientHomeScreen;
 import org.json.simple.JSONObject;
@@ -57,6 +58,11 @@ public class Login extends javax.swing.JFrame {
         lblMakeAccount.setText("No Login?");
 
         btnMakeAccount.setText("Make Account");
+        btnMakeAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakeAccountActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,6 +134,12 @@ public class Login extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnMakeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeAccountActionPerformed
+        // TODO add your handling code here:
+        new CreateOwnAccount().setVisible(true);
+        
+    }//GEN-LAST:event_btnMakeAccountActionPerformed
 
     /**
      * @param args the command line arguments
