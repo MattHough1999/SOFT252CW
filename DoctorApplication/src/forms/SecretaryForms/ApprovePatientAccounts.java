@@ -5,6 +5,8 @@
  */
 package forms.SecretaryForms;
 
+
+
 /**
  *
  * @author mhough
@@ -122,6 +124,7 @@ public class ApprovePatientAccounts extends javax.swing.JFrame {
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnApproveActionPerformed
 
     /**

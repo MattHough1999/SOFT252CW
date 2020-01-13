@@ -9,6 +9,7 @@ import forms.AdminForms.AdminHomeScreen;
 import forms.AdminForms.CreateOwnAccount;
 import forms.DoctorForms.DoctorHomeScreen;
 import forms.PatientForms.PatientHomeScreen;
+import forms.SecretaryForms.SecretaryHomeScreen;
 import org.json.simple.JSONObject;
 import system.LoginSys;
 
@@ -41,6 +42,7 @@ public class Login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         lblMakeAccount = new javax.swing.JLabel();
         btnMakeAccount = new javax.swing.JButton();
+        btnMakeAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,19 +66,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        btnMakeAdmin.setText("Make Admin");
+        btnMakeAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMakeAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(btnLogin)
-                        .addGap(47, 47, 47)
-                        .addComponent(lblMakeAccount)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMakeAccount))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -85,7 +87,16 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtPasswd, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                            .addComponent(txtUname))))
+                            .addComponent(txtUname)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(btnLogin)
+                        .addGap(47, 47, 47)
+                        .addComponent(lblMakeAccount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMakeAdmin)
+                            .addComponent(btnMakeAccount))))
                 .addContainerGap(276, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,7 +110,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPasswd)
                     .addComponent(txtPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addComponent(btnMakeAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(lblMakeAccount)
@@ -127,7 +140,7 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
             }
             else if (txtUname.getText().charAt(0) == 'S') {
-                new DoctorHomeScreen().setVisible(true);
+                new SecretaryHomeScreen().setVisible(true);
                 this.dispose();
             }
         }
@@ -137,9 +150,14 @@ public class Login extends javax.swing.JFrame {
 
     private void btnMakeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeAccountActionPerformed
         // TODO add your handling code here:
-        new CreateOwnAccount().setVisible(true);
+        new CreateAccount().setVisible(true);
         
     }//GEN-LAST:event_btnMakeAccountActionPerformed
+
+    private void btnMakeAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeAdminActionPerformed
+        // TODO add your handling code here:
+        new CreateOwnAccount().setVisible(true);
+    }//GEN-LAST:event_btnMakeAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +197,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnMakeAccount;
+    private javax.swing.JButton btnMakeAdmin;
     private javax.swing.JLabel lblMakeAccount;
     private javax.swing.JLabel lblPasswd;
     private javax.swing.JLabel lblUname;

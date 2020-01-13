@@ -5,17 +5,23 @@
  */
 package forms.AdminForms;
 
+import java.util.ArrayList;
+import system.JsonDataHandler;
+import users.AdminSystem.AddRemDocSec;
+import users.AdminSystem.ReadRatings;
+
 /**
  *
  * @author mhough
  */
-public class AddRemoveDocSec extends javax.swing.JFrame {
+public class AddDocSec extends javax.swing.JFrame {
 
     /**
      * Creates new form AddRemoveDocSec
      */
-    public AddRemoveDocSec() {
+    public AddDocSec() {
         initComponents();
+        populate();
     }
 
     /**
@@ -35,12 +41,13 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
         btnaddAcc = new javax.swing.JButton();
         lblDesiredPasswd = new javax.swing.JLabel();
         txtPasswd = new javax.swing.JTextField();
-        lblConfirmPassword = new javax.swing.JLabel();
-        txtConfirmPasswd = new javax.swing.JTextField();
         RadBtnAdd = new javax.swing.JRadioButton();
         RadBtnRemove = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         btnremAcc = new javax.swing.JButton();
+        CMBEmployees = new javax.swing.JComboBox<>();
+        btnClose = new javax.swing.JButton();
+        CMBType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,8 +63,6 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
         });
 
         lblDesiredPasswd.setText("Password :");
-
-        lblConfirmPassword.setText("Confirm Password :");
 
         BtnGrpAddRemove.add(RadBtnAdd);
         RadBtnAdd.setSelected(true);
@@ -86,10 +91,26 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Add / Remove Doctors / Secretaries");
+        jLabel1.setText("Add or Remove Doctors / Secretaries");
 
         btnremAcc.setText("Remove Account");
         btnremAcc.setEnabled(false);
+        btnremAcc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnremAccActionPerformed(evt);
+            }
+        });
+
+        CMBEmployees.setEnabled(false);
+
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        CMBType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doctors", "Admins", "Secretaries", "Patients" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,53 +118,63 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGap(60, 60, 60)
-                                            .addComponent(lblDesiredUname)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtUname, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(RadBtnAdd)
-                                                .addComponent(RadBtnRemove))
-                                            .addGap(87, 87, 87)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblDesiredPasswd)
-                                            .addComponent(lblAddress)
-                                            .addComponent(lblConfirmPassword))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                                            .addComponent(txtPasswd)
-                                            .addComponent(txtConfirmPasswd)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
-                        .addGap(0, 141, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnremAcc, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnaddAcc, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnaddAcc, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblDesiredUname)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtUname, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(RadBtnAdd)
+                                            .addComponent(RadBtnRemove))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CMBEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblDesiredPasswd)
+                                            .addComponent(lblAddress))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                            .addComponent(txtPasswd))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CMBType, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(20, 20, 20)
-                .addComponent(RadBtnAdd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RadBtnRemove)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnClose))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(RadBtnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RadBtnRemove)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CMBEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CMBType, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDesiredUname))
@@ -155,11 +186,7 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDesiredPasswd)
                     .addComponent(txtPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblConfirmPassword)
-                    .addComponent(txtConfirmPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(53, 53, 53)
                 .addComponent(btnaddAcc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnremAcc)
@@ -171,6 +198,7 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
 
     private void btnaddAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddAccActionPerformed
         // TODO add your handling code here:
+        AddRemDocSec.createAcc(CMBType.getSelectedItem().toString(),txtUname.getText(),txtAddress.getText());
     }//GEN-LAST:event_btnaddAccActionPerformed
 
     private void RadBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadBtnAddActionPerformed
@@ -184,15 +212,60 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
     private void RadBtnRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadBtnRemoveMouseClicked
         // TODO add your handling code here:
         btnremAcc.setEnabled(true);
+        CMBEmployees.setEnabled(true);
         btnaddAcc.setEnabled(false);
+        CMBType.setEnabled(false);
+        populate();
     }//GEN-LAST:event_RadBtnRemoveMouseClicked
 
     private void RadBtnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadBtnAddMouseClicked
         // TODO add your handling code here:
         btnremAcc.setEnabled(false);
+        CMBEmployees.setEnabled(false);
         btnaddAcc.setEnabled(true);
+        CMBType.setEnabled(true);
+        populate();
     }//GEN-LAST:event_RadBtnAddMouseClicked
 
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnremAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnremAccActionPerformed
+        // TODO add your handling code here:
+        String type = getType(CMBEmployees.getSelectedItem().toString());
+        AddRemDocSec.RemoveAcc(type, CMBEmployees.getSelectedItem().toString());
+    }//GEN-LAST:event_btnremAccActionPerformed
+    public void populate()
+    {
+        CMBEmployees.removeAllItems();
+        ArrayList IDs = JsonDataHandler.getEmployeeIDs();
+        for(int i = 0; i<IDs.size();i++)
+        {
+            CMBEmployees.addItem(IDs.get(i).toString());
+        }
+    }
+    public String getType(String type)
+    {
+        if(type.charAt(0) == 'A')
+        {
+            return "Admins";
+        }
+        else if(type.charAt(0) == 'D')
+        {
+            return "Doctors";
+        }
+        else if(type.charAt(0) == 'P')
+        {
+            return "Patients";
+        }
+        else if(type.charAt(0) == 'S')
+        {
+            return "Secretaries";
+        }
+        return null;
+    }
     /**
      * @param args the command line arguments
      */
@@ -210,37 +283,39 @@ public class AddRemoveDocSec extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddRemoveDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddRemoveDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddRemoveDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddRemoveDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddDocSec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddRemoveDocSec().setVisible(true);
+                new AddDocSec().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BtnGrpAddRemove;
+    private javax.swing.JComboBox<String> CMBEmployees;
+    private javax.swing.JComboBox<String> CMBType;
     private javax.swing.JRadioButton RadBtnAdd;
     private javax.swing.JRadioButton RadBtnRemove;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnaddAcc;
     private javax.swing.JButton btnremAcc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAddress;
-    private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblDesiredPasswd;
     private javax.swing.JLabel lblDesiredUname;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtConfirmPasswd;
     private javax.swing.JTextField txtPasswd;
     private javax.swing.JTextField txtUname;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,8 @@
  */
 package forms.AdminForms;
 
+
+import javax.swing.JOptionPane;
 import users.AdminSystem.CreateOwnAcc;
 
 /**
@@ -33,9 +35,10 @@ public class CreateOwnAccount extends javax.swing.JFrame {
         lblDesiredUname = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         txtUname = new javax.swing.JTextField();
-        btnRequestAcc = new javax.swing.JButton();
+        btnMakeAcc = new javax.swing.JButton();
         lblDesiredPasswd = new javax.swing.JLabel();
         txtPasswd = new javax.swing.JTextField();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,14 +46,21 @@ public class CreateOwnAccount extends javax.swing.JFrame {
 
         lblDesiredUname.setText("Enter Your Name :");
 
-        btnRequestAcc.setText("Create Account");
-        btnRequestAcc.addActionListener(new java.awt.event.ActionListener() {
+        btnMakeAcc.setText("Create Account");
+        btnMakeAcc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestAccActionPerformed(evt);
+                btnMakeAccActionPerformed(evt);
             }
         });
 
         lblDesiredPasswd.setText("Chose A Strong Password :");
+
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,7 +68,7 @@ public class CreateOwnAccount extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRequestAcc)
+                    .addComponent(btnMakeAcc)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
@@ -66,10 +76,15 @@ public class CreateOwnAccount extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(83, 83, 83)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblDesiredUname)
-                                .addComponent(lblDesiredPasswd))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(83, 83, 83)
+                                    .addComponent(lblDesiredPasswd))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(btnClose)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDesiredUname)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtPasswd)
@@ -82,8 +97,9 @@ public class CreateOwnAccount extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDesiredUname))
-                .addGap(32, 32, 32)
+                    .addComponent(lblDesiredUname)
+                    .addComponent(btnClose))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddress)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -92,17 +108,26 @@ public class CreateOwnAccount extends javax.swing.JFrame {
                     .addComponent(txtPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDesiredPasswd))
                 .addGap(38, 38, 38)
-                .addComponent(btnRequestAcc)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addComponent(btnMakeAcc)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRequestAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestAccActionPerformed
+    private void btnMakeAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeAccActionPerformed
         // TODO add your handling code here:
-        CreateOwnAcc.createAcc(txtUname.getText(),txtAddress.getText());
-    }//GEN-LAST:event_btnRequestAccActionPerformed
+        String uName = CreateOwnAcc.createAcc(txtUname.getText(),txtAddress.getText());
+        JOptionPane.showMessageDialog (null, "Success! your username is: " + uName, "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+//        new Success("Success").setVisible(true);
+//        Success.SuccessMessage = "Success, your UserName is:" + uName;
+    }//GEN-LAST:event_btnMakeAccActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +165,8 @@ public class CreateOwnAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRequestAcc;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnMakeAcc;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblDesiredPasswd;
     private javax.swing.JLabel lblDesiredUname;

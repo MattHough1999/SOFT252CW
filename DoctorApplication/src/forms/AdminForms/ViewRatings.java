@@ -5,6 +5,9 @@
  */
 package forms.AdminForms;
 
+import java.util.ArrayList;
+import users.AdminSystem.ReadRatings;
+
 /**
  *
  * @author mhough
@@ -15,7 +18,11 @@ public class ViewRatings extends javax.swing.JFrame {
      * Creates new form ViewRatings
      */
     public ViewRatings() {
+        
         initComponents();
+        
+        populate();
+        
     }
 
     /**
@@ -28,9 +35,10 @@ public class ViewRatings extends javax.swing.JFrame {
     private void initComponents() {
 
         lblDoctorID = new javax.swing.JLabel();
-        txtDoctorID = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtRatings = new javax.swing.JTextArea();
+        CMBDoctors = new javax.swing.JComboBox<>();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,34 +48,75 @@ public class ViewRatings extends javax.swing.JFrame {
         txtRatings.setRows(5);
         jScrollPane1.setViewportView(txtRatings);
 
+        CMBDoctors.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CMBDoctorsItemStateChanged(evt);
+            }
+        });
+        CMBDoctors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CMBDoctorsActionPerformed(evt);
+            }
+        });
+
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDoctorID)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(195, 195, 195))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDoctorID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CMBDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnClose)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addContainerGap()
+                .addComponent(btnClose)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDoctorID)
-                    .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CMBDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CMBDoctorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CMBDoctorsActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_CMBDoctorsActionPerformed
+
+    private void CMBDoctorsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CMBDoctorsItemStateChanged
+        // TODO add your handling code here:
+        txtRatings.setText( ReadRatings.getFeedback(CMBDoctors.getSelectedItem().toString()));
+    }//GEN-LAST:event_CMBDoctorsItemStateChanged
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,12 +151,22 @@ public class ViewRatings extends javax.swing.JFrame {
                 new ViewRatings().setVisible(true);
             }
         });
+        
+    }
+    public void populate()
+    {
+        ArrayList IDs = ReadRatings.getDoctorIDs();
+        for(int i = 0; i<IDs.size();i++)
+        {
+            CMBDoctors.addItem(IDs.get(i).toString());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CMBDoctors;
+    private javax.swing.JButton btnClose;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDoctorID;
-    private javax.swing.JTextField txtDoctorID;
     private javax.swing.JTextArea txtRatings;
     // End of variables declaration//GEN-END:variables
 }

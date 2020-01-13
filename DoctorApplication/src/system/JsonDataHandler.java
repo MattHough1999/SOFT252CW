@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
  
 import org.json.simple.JSONArray;
@@ -66,7 +67,7 @@ public class JsonDataHandler {
     public static JSONObject getData()
     {
         JSONParser jsonParser = new JSONParser();
-        try (FileReader reader = new FileReader("./testJSON.json"))
+        try (FileReader reader = new FileReader("./dataJSON.json"))
         {
             //Read JSON file
             JSONObject obj = (JSONObject) jsonParser.parse(reader);
@@ -80,10 +81,63 @@ public class JsonDataHandler {
         }
         return null;
     }
+    public static ArrayList<String> getEmployeeIDs()
+    {
+        JSONObject data = (JSONObject) getData();
+        JSONArray doctors = (JSONArray) data.get("Doctors");
+        JSONArray secretaries = (JSONArray) data.get("Secretaries");
+        JSONObject current;
+        
+        ArrayList<String> IDs = new ArrayList<String>();
+        
+        for(int i = 0; i < doctors.size();i++)
+        {   
+            current = (JSONObject) doctors.get(i);
+            IDs.add(current.get("userID").toString());
+            
+        }
+        for(int i = 0; i < secretaries.size();i++)
+        {   
+            current = (JSONObject) secretaries.get(i);
+            IDs.add(current.get("userID").toString());
+            
+        }
+        return IDs;
+    }
     public static void addData(JSONObject newData)
     {
         JSONParser jsonParser = new JSONParser();
-        try (FileWriter file = new FileWriter("./testJSON.json")) {
+        try (FileWriter file = new FileWriter("./dataJSON.json")) {
+ 
+            file.write(newData.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    public static JSONObject getTempData()
+    {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader("./tempJSON.json"))
+        {
+            //Read JSON file
+            JSONObject obj = (JSONObject) jsonParser.parse(reader);
+            return obj;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static void addTempData(JSONObject newData)
+    {
+        JSONParser jsonParser = new JSONParser();
+        try (FileWriter file = new FileWriter("./tempJSON.json")) {
  
             file.write(newData.toJSONString());
             file.flush();
