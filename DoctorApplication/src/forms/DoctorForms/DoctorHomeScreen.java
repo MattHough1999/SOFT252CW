@@ -5,6 +5,7 @@
  */
 package forms.DoctorForms;
 
+import forms.Login;
 import users.Doctor;
 
 /**
@@ -31,6 +32,7 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
 
         btnViewAppointments = new javax.swing.JButton();
         btnOrderMeds = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +50,13 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
             }
         });
 
+        btnHome.setText("Logout");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,11 +67,17 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
                     .addComponent(btnOrderMeds)
                     .addComponent(btnViewAppointments))
                 .addContainerGap(263, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHome)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addComponent(btnHome)
+                .addGap(9, 9, 9)
                 .addComponent(btnOrderMeds)
                 .addGap(18, 18, 18)
                 .addComponent(btnViewAppointments)
@@ -82,6 +97,12 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
         new ViewAppointments().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnViewAppointmentsActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +141,7 @@ public class DoctorHomeScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnOrderMeds;
     private javax.swing.JButton btnViewAppointments;
     // End of variables declaration//GEN-END:variables

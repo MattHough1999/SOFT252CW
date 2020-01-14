@@ -111,6 +111,21 @@ public class JsonDataHandler {
         }
         return IDs;
     }
+    public static ArrayList<String> getPatientIDs()
+    {
+        JSONObject current;
+        JSONObject data = (JSONObject) getData();
+        JSONArray patients = (JSONArray) data.get("Patients");
+        ArrayList<String> IDs = new ArrayList<String>();
+        
+        for(int i = 0; i < patients.size();i++)
+        {   
+            current = (JSONObject) patients.get(i);
+            IDs.add(current.get("userID").toString());
+            
+        }
+        return IDs;
+    }
     public static void addData(JSONObject newData)
     {
         JSONParser jsonParser = new JSONParser();
@@ -154,6 +169,7 @@ public class JsonDataHandler {
         }
         
     }
+    
     
     
 }
