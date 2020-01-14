@@ -86,6 +86,7 @@ public class JsonDataHandler {
         JSONObject data = (JSONObject) getData();
         JSONArray doctors = (JSONArray) data.get("Doctors");
         JSONArray secretaries = (JSONArray) data.get("Secretaries");
+        JSONArray admins = (JSONArray) data.get("Admins");
         JSONObject current;
         
         ArrayList<String> IDs = new ArrayList<String>();
@@ -99,6 +100,12 @@ public class JsonDataHandler {
         for(int i = 0; i < secretaries.size();i++)
         {   
             current = (JSONObject) secretaries.get(i);
+            IDs.add(current.get("userID").toString());
+            
+        }
+        for(int i = 0; i < admins.size();i++)
+        {   
+            current = (JSONObject) admins.get(i);
             IDs.add(current.get("userID").toString());
             
         }

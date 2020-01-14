@@ -6,6 +6,8 @@
 package forms.AdminForms;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import javax.swing.JOptionPane;
 import system.JsonDataHandler;
 import users.AdminSystem.AddRemDocSec;
 import users.AdminSystem.ReadRatings;
@@ -198,7 +200,9 @@ public class AddDocSec extends javax.swing.JFrame {
 
     private void btnaddAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddAccActionPerformed
         // TODO add your handling code here:
-        AddRemDocSec.createAcc(CMBType.getSelectedItem().toString(),txtUname.getText(),txtAddress.getText());
+        String uName = AddRemDocSec.createAcc(CMBType.getSelectedItem().toString(),txtUname.getText(),txtAddress.getText());
+        JOptionPane.showMessageDialog (null, "Success! your username is: " + uName, "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
     }//GEN-LAST:event_btnaddAccActionPerformed
 
     private void RadBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadBtnAddActionPerformed
@@ -235,9 +239,12 @@ public class AddDocSec extends javax.swing.JFrame {
     private void btnremAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnremAccActionPerformed
         // TODO add your handling code here:
         String type = getType(CMBEmployees.getSelectedItem().toString());
-        AddRemDocSec.RemoveAcc(type, CMBEmployees.getSelectedItem().toString());
+        String success = AddRemDocSec.RemoveAcc(type, CMBEmployees.getSelectedItem().toString());
+        JOptionPane.showMessageDialog (null, success, "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+        
     }//GEN-LAST:event_btnremAccActionPerformed
-    public void populate()
+    public void populate()//populates the combo box with employee IDs via the data handler
     {
         CMBEmployees.removeAllItems();
         ArrayList IDs = JsonDataHandler.getEmployeeIDs();
@@ -246,7 +253,7 @@ public class AddDocSec extends javax.swing.JFrame {
             CMBEmployees.addItem(IDs.get(i).toString());
         }
     }
-    public String getType(String type)
+    public String getType(String type) //returns user account type
     {
         if(type.charAt(0) == 'A')
         {

@@ -120,8 +120,6 @@ public class CreateOwnAccount extends javax.swing.JFrame {
         String uName = CreateOwnAcc.createAcc(txtUname.getText(),txtAddress.getText());
         JOptionPane.showMessageDialog (null, "Success! your username is: " + uName, "Success", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
-//        new Success("Success").setVisible(true);
-//        Success.SuccessMessage = "Success, your UserName is:" + uName;
     }//GEN-LAST:event_btnMakeAccActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed

@@ -68,6 +68,7 @@ public class AddRemDocSec {
         JSONObject currUser;
         JSONArray group = (JSONArray) data.get(type);
         
+        
         for(int i = 0; i < group.size();i++)
         {
             currUser = (JSONObject) group.get(i);
@@ -79,25 +80,12 @@ public class AddRemDocSec {
                 group.remove(i);
                 group.add(newAcc);
                 data.put(type, group);
-                break;
+                JsonDataHandler.addData(data);
+                return "Account Deleted Successfully";
+                
             }
         }
-        int count = group.size();
-        char c = type.charAt(0);
-        String userID = String.format(c + "%04d", count + 1);
+        return null;
         
-        
-//        //create and populate new admin user.
-//        JSONObject newAcc = new JSONObject();
-//        newAcc.put("userID", "DELETED");
-//        newAcc.put("name", "DELETED");
-//        newAcc.put("address", "DELETED");
-//        //group.remove(count)
-//        //group.add(newAcc);
-//        System.out.println(group);
-//        data.put(type, group);
-        
-        JsonDataHandler.addData(data);
-        return userID;
     }
 }
