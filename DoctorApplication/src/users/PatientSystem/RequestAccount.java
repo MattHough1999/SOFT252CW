@@ -22,7 +22,7 @@ public class RequestAccount {
         JSONArray patients = (JSONArray) data.get("Patients");
         JSONArray tempPatients = (JSONArray) temp.get("Patients");
         int count = patients.size() + tempPatients.size();
-        String userID = String.format("P" + "%04d", 5 + 1);
+        String userID = String.format("P" + "%04d", count + 1);
         
         //create and populate new temp user.
         JSONObject newPatient = new JSONObject();

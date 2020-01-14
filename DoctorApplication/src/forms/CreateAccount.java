@@ -138,6 +138,7 @@ public class CreateAccount extends javax.swing.JFrame {
     private void btnRequestAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestAccActionPerformed
         // TODO add your handling code here:
         RequestAccount.ReqAcc(txtUname.getText(),txtAddress.getText(),txtAge.getText(),txtSex.getText());
+        this.dispose();
     }//GEN-LAST:event_btnRequestAccActionPerformed
 
     private void txtSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSexActionPerformed
