@@ -2,7 +2,7 @@
 
 <ClassDiagram name="DoctorApplication">
   <ClassDiagramComponents>
-    <Class name="AddDocSec" package="forms.AdminForms" visibility="public" xPosition="723.0" yPosition="63.0">
+    <Class name="AddDocSec" package="forms.AdminForms" visibility="public" xPosition="2923.0" yPosition="63.0">
       <Fields>
         <Field name="BtnGrpAddRemove" type="javax.swing.ButtonGroup" visibility="private"/>
         <Field name="CMBEmployees" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
@@ -107,7 +107,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="ProvideFeedbackForDoctors" package="forms.AdminForms" visibility="public" xPosition="33.0" yPosition="63.0">
+    <Class name="ProvideFeedbackForDoctors" package="forms.AdminForms" visibility="public" xPosition="2936.0" yPosition="819.0">
       <Fields>
         <Field name="btnClose" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnSubFeed" type="javax.swing.JButton" visibility="private"/>
@@ -249,7 +249,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CreateMedsOrder" package="forms.DoctorForms" visibility="public" xPosition="35.0" yPosition="622.0">
+    <Class name="CreateMedsOrder" package="forms.DoctorForms" visibility="public" xPosition="3643.0" yPosition="335.0">
       <Fields>
         <Field name="btnHome" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnOrder" type="javax.swing.JButton" visibility="private"/>
@@ -616,7 +616,7 @@
         <Method name="populate" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="ApprovePatientAccRemovalReq" package="forms.SecretaryForms" visibility="public" xPosition="1463.0" yPosition="63.0">
+    <Class name="ApprovePatientAccRemovalReq" package="forms.SecretaryForms" visibility="public" xPosition="3707.0" yPosition="691.0">
       <Fields>
         <Field name="btnApprove" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnDeny" type="javax.swing.JButton" visibility="private"/>
@@ -723,7 +723,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="RecieveAppRequest" package="forms.SecretaryForms" visibility="public" xPosition="33.0" yPosition="366.0">
+    <Class name="RecieveAppRequest" package="forms.SecretaryForms" visibility="public" xPosition="3630.0" yPosition="63.0">
       <Fields>
         <Field name="BtnCreateApp" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnBack" type="javax.swing.JButton" visibility="private"/>
@@ -905,7 +905,7 @@
         <Method name="getDoctorIDs" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true"/>
       </Methods>
     </Class>
-    <Class name="AdminUser" package="users" visibility="public" xPosition="2923.0" yPosition="412.0">
+    <Class name="AdminUser" package="users" visibility="public" xPosition="965.0" yPosition="245.0">
       <Fields>
         <Field name="userID" type="String" visibility="package"/>
         <Field name="name" type="String" visibility="package"/>
@@ -933,7 +933,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Doctor" package="users" visibility="public" xPosition="3774.0" yPosition="418.0">
+    <Class name="Doctor" package="users" visibility="public" xPosition="574.0" yPosition="260.0">
       <Fields>
         <Field name="userID" type="String" visibility="public" isStatic="true"/>
         <Field name="name" type="String" visibility="public"/>
@@ -1017,7 +1017,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="PatientUser" package="users" visibility="public" xPosition="3287.0" yPosition="410.0">
+    <Class name="PatientUser" package="users" visibility="public" xPosition="35.0" yPosition="203.0">
       <Fields>
         <Field name="userID" type="String" visibility="public" isStatic="true"/>
         <Field name="name" type="String" visibility="public"/>
@@ -1064,7 +1064,7 @@
         <Method name="ApprAcc" returnType="boolean" visibility="public" isStatic="true"/>
       </Methods>
     </Class>
-    <Class name="SecretaryUser" package="users" visibility="public" xPosition="4103.0" yPosition="421.0">
+    <Class name="SecretaryUser" package="users" visibility="public" xPosition="1463.0" yPosition="179.0">
       <Fields>
         <Field name="userID" type="String" visibility="package"/>
         <Field name="name" type="String" visibility="package"/>
@@ -1092,14 +1092,14 @@
         </Method>
       </Methods>
     </Class>
-    <Interface name="User" package="users" visibility="public" xPosition="3679.0" yPosition="114.0">
+    <Interface name="User" package="users" visibility="public" xPosition="705.0" yPosition="43.0">
       <Methods/>
     </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="users.SecretaryUser" target="users.User"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="users.PatientUser" target="users.User"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="users.AdminUser" target="users.User"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="users.Doctor" target="users.User"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="users.PatientUser" target="users.User"/>
   </ClassDiagramRelations>
 </ClassDiagram>
